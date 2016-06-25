@@ -2,7 +2,8 @@ version: "2"
 
 services:
   vote:
-    build: ./vote
+    #build: ./vote
+    image: lachlanevenson/examplevotingapp_vote:latest
     command: python app.py
     volumes:
      - ./vote:/app
@@ -14,13 +15,13 @@ services:
     ports: ["6379"]
 
   worker:
-    build: ./worker
+    image: lachlanevenson/examplevotingapp_worker:latest
 
   db:
     image: postgres:9.4
 
   result:
-    build: ./result
+    image: lachlanevenson/examplevotingapp_result:latest
     command: nodemon --debug server.js
     volumes:
       - ./result:/app
